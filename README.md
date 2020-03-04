@@ -1,4 +1,4 @@
-# [Airport Scoreboard](https://dereviankoviacheslav.github.io/todo-list-on-react-rest-api/dist)
+# [Airport Scoreboard](https://dereviankoviacheslav.github.io/airport-scoreboard/dist)
 
 ### QUICK START
 In the project directory, you can run:
