@@ -1,17 +1,21 @@
 import './Flight.scss';
 import React from 'react';
+import moment from 'moment';
 
-function Flight() {
+function Flight(props) {
+  const timeTakeofFact = moment(props.timeTakeofFact).format('HH:mm');
+  const timeToStand = moment(props.timeToStand).format('HH:mm');
+  const { term, fltNo, status, name, logoUrl, } = props;
   return (
     <tr >
-      <td className="terminal-field"><span>A</span></td>
-      <td className="time-field">4:45</td>
-      <td className="way-field"><span>Minsk</span></td>
-      <td className="status-field"><span>Departed at 4:49</span></td>
+      <td className="terminal-field"><span>{term}</span></td>
+      <td className="time-field">{timeTakeofFact}</td>
+      <td className="way-field"><span>{'City...'}</span></td>
+      <td className="status-field"><span>{`${status} at ${timeToStand}`}</span></td>
       <td className="company-name">
-        <span className="logo"><img src="#" alt="Belavia" /><span>Belavia</span></span>
+        <span className="logo"><img src={logoUrl} alt={name} /><span>{name}</span></span>
       </td>
-      <td className="flight-field"><span>B2848</span></td>
+      <td className="flight-field"><span>{`${fltNo}`}</span></td>
       <td className="details-field">
         <span><a href="#" className="">Flight details</a></span>
       </td>

@@ -1,13 +1,13 @@
 import './SearchFlightsPage.scss';
 import React from 'react';
 import SearchField from '../search-field';
-import FlightsList from '../flights-list';
+import FlightsSchedule from '../flights-schedule';
 
 function SearchFlightsPage() {
   return (
     <>
       <SearchField />
-      <FlightsList />
+      <FlightsSchedule />
     </>
   );
 }
