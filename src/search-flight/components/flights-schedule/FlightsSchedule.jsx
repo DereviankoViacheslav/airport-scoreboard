@@ -1,42 +1,34 @@
 import './FlightsSchedule.scss';
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
-import { departureFlightsListSelector, arrivalFlightsListSelector } from '../../flights.selectors';
-import * as flightsActions from '../../flights.actions';
-import { Link, useLocation } from 'react-router-dom';
+import { Route, Switch, Link, useLocation } from 'react-router-dom';
 import FlightsList from '../flights-list';
 
-function FlightsSchedule({ getFlightsList, departureFlightsList, arrivalFlightsList }) {
+function FlightsSchedule() {
   const [status, setStatus] = useState('departures');
   const location = useLocation();
   const departureClass = status === 'departures' ? 'flights-list__btn_active' : '';
   const arrivalClass = status === 'arrivals' ? 'flights-list__btn_active' : '';
 
-  console.log(departureFlightsList);
-
   useEffect(() => {
-    if (location.pathname.includes('departures')) {
-      setStatus('departures');
-    }
     if (location.pathname.includes('arrivals')) {
       setStatus('arrivals');
+    } else {
+      setStatus('departures');
     }
-    getFlightsList('09-03-2020');
-  }, [location.pathname]);
+  }, [location]);
 
   return (
     <div className="flights-list">
       <div className="flights-list__switcher">
         <Link
-          to='/departures'
+          to={`/departures${location.search}`}
           className={`flights-list__btn flights-list__btn_departures ${departureClass}`}
-        >
+          >
           <i className="material-icons">flight_takeoff</i>
           Departures
         </Link>
         <Link
-          to='/arrivals'
+          to={`/arrivals${location.search}`}
           className={`flights-list__btn flights-list__btn_arrivals ${arrivalClass}`}
         >
           <i className="material-icons">flight_land</i>
@@ -56,33 +48,9 @@ function FlightsSchedule({ getFlightsList, departureFlightsList, arrivalFlightsL
             </tr>
           </thead>
           <tbody>
-            <Route
-              exact
-              path='/'
-              render={() => {
-                return <FlightsList flightsList={departureFlightsList} />
-              }}
-            />
-            <Route
-              exact
-              path='/departures'
-              render={() => {
-                return <FlightsList flightsList={departureFlightsList} />
-              }}
-            />
-            <Route
-              path="/departures/:id"
-              render={({ match }) => {
-                const list = [departureFlightsList.find((flight) => +flight.ID === +match.params.id)];
-                return <FlightsList flightsList={list} />
-              }}
-            />
-            <Route
-              path='/arrivals'
-              render={() => {
-                return <FlightsList flightsList={arrivalFlightsList} />
-              }}
-            />
+            <Switch>
+              <Route path={`/:direction?`} component={FlightsList} />
+            </Switch>
           </tbody>
         </table>
       </div>
@@ -90,15 +58,4 @@ function FlightsSchedule({ getFlightsList, departureFlightsList, arrivalFlightsL
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    departureFlightsList: departureFlightsListSelector(state),
-    arrivalFlightsList: arrivalFlightsListSelector(state),
-  };
-};
-
-const mapDispatchToProps = {
-  getFlightsList: flightsActions.getFlightsList,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FlightsSchedule);
+export default FlightsSchedule;
