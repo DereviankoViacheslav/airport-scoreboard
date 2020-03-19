@@ -23,6 +23,8 @@ The page will reload if you make edits.
 - [Redux](https://redux.js.org/)
 - [Redux-thunk](https://www.npmjs.com/package/redux-thunk)
 - [Reselect](https://github.com/reduxjs/reselect)
+- [Moment.js](https://momentjs.com/)
+- [qs](https://www.npmjs.com/package/qs)
 
 ### Author
 [Derevianko Viacheslav](https://github.com/DereviankoViacheslav)
