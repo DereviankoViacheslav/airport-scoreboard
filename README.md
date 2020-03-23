@@ -1,4 +1,4 @@
-# [Airport Scoreboard](https://dereviankoviacheslav.github.io/airport-scoreboard/dist)
+# [Airport Scoreboard](https://airport-scoreboard.netlify.com/arrivals?search=&date=19-03-2020)
 
 ### QUICK START
 In the project directory, you can run:
