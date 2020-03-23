@@ -42,7 +42,7 @@ const createFlightsList = (flightsList, flightDirection) => {
 
 const FlightsList = ({ departureFlightsList, arrivalFlightsList }) => {
   const [flightsList, setFlightsList] = useState([]);
-  const [status, setStatus] = useState('departures');
+  const [status, setStatus] = useState('');
   const { direction } = useParams();
   const location = useLocation();
 
